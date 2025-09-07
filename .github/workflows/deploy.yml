@@ -1,32 +1,41 @@
-name: Deploy React App
+name: build-and-deploy
 
+# เพิ่ม permissions ให้ workflow push ได้
+permissions:
+  contents: write
+
+# เรียกใช้ workflow ทุกครั้งที่ push ไป main
 on:
   push:
     branches:
-      - main   # deploy ทุกครั้งที่ push main
+      - main
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      # ดึงโค้ดจาก repository
+      - uses: actions/checkout@v3
 
-      - name: Setup Node.js
+      # ตั้งค่า Node.js
+      - name: Use Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: '18'
 
+      # ติดตั้ง dependencies
       - name: Install dependencies
         run: npm install
 
-      - name: Build project
+      # Build โปรเจกต์ React
+      - name: Build
         run: npm run build
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      # Deploy ไปยัง gh-pages
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist   # vite build ออกมาเป็น dist
-
+          branch: gh-pages # branch สำหรับ deploy
+          folder: build    # folder ที่จะ deploy (React build output)
+          token: ${{ secrets.GITHUB_TOKEN }}
