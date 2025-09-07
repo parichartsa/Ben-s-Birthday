@@ -1,8 +1,15 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./Home";
+import NextPage from "./NextPage";
+import Page2 from "./Page2";
+import Page3 from "./Page3";
+import Page4 from "./Page4";
+import Page5 from "./Page5";
+import Page6 from "./Page6";
 
 export default function App() {
   return (
-    <Router basename="/Ben-s-Birthday">
+    <Router>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/next" element={<NextPage />} />
