@@ -1,0 +1,658 @@
+/* ทำให้ container ครอบทั้งหน้าจอและจัดทุกอย่างตรงกลาง */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column; /* วางแนวตั้ง */
+  justify-content: center; /* จัดแนวตั้งตรงกลาง */
+  align-items: center;     /* จัดแนวนอนตรงกลาง */
+  height: 100vh;           /* เต็มหน้าจอ */
+  background-color: #ffffff; /* พื้นหลังสีขาว */
+  text-align: center;
+}
+
+/* ขนาดรูปเค้ก */
+.cake-img {
+  width: 400px;
+  height: 400px;
+  margin-top: 0.5rem; /* เว้นระยะจากข้อความ */
+}
+
+/* ข้อความ Happy Birthday */
+.birthday-text {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #db2777;
+  margin-bottom: 0.5rem; /* ระยะระหว่างข้อความกับรูป */
+}
+
+/* ปุ่ม Start ขาว + hover เป็นกรอบชมพู */
+.start-btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.6rem 1.5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #db2777;
+  background-color: #ffffff;
+  border: 2px solid #ffffff;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  text-align: center;
+  min-width: 120px;
+}
+
+.start-btn:hover {
+  border-color: #db2777;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Container และข้อความหัวข้อ */
+.container, .birthday-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.birthday-text {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #111;
+}
+
+/* กรอบครอบทั้งหมด */
+.atm-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+  padding: 2rem;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.25); /* glass */
+  border: 3px solid rgba(219, 39, 119, 0.4); /* ขอบชมพู */
+  backdrop-filter: blur(12px); /* glass effect */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ช่องกรอก PIN */
+.atm-inputs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.atm-inputs input {
+  width: 60px;
+  height: 60px;
+  font-size: 1.8rem;
+  text-align: center;
+  margin: 0 6px;
+  border: 2px solid #db2777;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(6px);
+}
+
+.atm-inputs input:focus {
+  transform: scale(1.1);
+  border-color: #f472b6;
+}
+
+/* Keypad grid */
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 80px); /* 3 คอลัมน์ เท่ากัน */
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.key-btn {
+  padding: 0.6rem 0;
+  font-size: 1.3rem;
+  font-weight: bold;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  /* Glass style */
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(15px);
+
+  /* ขอบ */
+  border: 2px solid rgba(255, 255, 255, 0.4);
+
+  /* สีตัวอักษร */
+  color: #db2777;
+}
+
+.key-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Clear button ยาวเหมือนเดิม */
+.clear-btn {
+  grid-column: span 2; /* กิน 2 คอลัมน์ */
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(244, 114, 182, 0.4);
+  color: #f472b6;
+}
+
+.clear-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+
+
+/* Submit button */
+.submit-btn {
+  margin-top: 20px;
+  font-size: 1.2rem;
+  padding: 0.6rem 2rem;
+  font-weight: 600;
+  color: #fff;
+  background: rgba(219,39,119,0.85);
+  border-radius: 20px;
+  border: none;
+  box-shadow: 0 8px 20px rgba(219,39,119,0.4);
+}
+
+.submit-btn:hover {
+  background: rgba(219,39,119,1);
+  transform: translateY(-2px);
+}
+
+/* Animation container สำหรับรูป + ข้อความ */
+.animation-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  animation: pop 0.5s ease-in-out infinite alternate;
+}
+
+
+.animation-img {
+  width: 450px;
+  height: 450px;
+  margin-bottom: 1rem;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* ข้อความเด้งตรงกลางพร้อม emoji */
+.animation-text {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: black;
+  text-align: center;
+  animation: pop 0.5s ease-in-out infinite alternate;
+}
+
+/* Keyframes สำหรับ floating images */
+@keyframes float {
+  0% { transform: translateY(0px) translateX(0px); }
+  50% { transform: translateY(-30px) translateX(15px); }
+  100% { transform: translateY(0px) translateX(0px); }
+}
+
+/* Default desktop */
+.floating-img {
+  position: absolute;
+  width: 200px;   
+  height: 200px;  
+  border-radius: 50%;
+  animation: float 6s ease-in-out infinite;
+  opacity: 0.95;
+  z-index: 1;
+  pointer-events: none;
+}
+/* Desktop positions */
+.floating-0 { top: 5%; left: 5%; }
+.floating-1 { top: 10%; right: 10%; }
+.floating-2 { bottom: 10%; left: 5%; }
+.floating-3 { bottom: 15%; right: 15%; }
+.floating-4 { top: 40%; left: 60%; }
+.floating-5 { bottom: 5%; right: 50%; }
+
+/* Responsive mobile */
+@media (max-width: 768px) {
+  .floating-img {
+    width: 60px;      /* ลดขนาด */
+    height: 60px;
+  }
+
+  .floating-0 { top: 5%; left: 5%; }
+  .floating-1 { top: 5%; right: 5%; }
+  .floating-2 { bottom: 5%; left: 5%; }
+  .floating-3 { bottom: 5%; right: 5%; }
+  .floating-4 { top: 20%; left: 70%; }
+  .floating-5 { bottom: 20%; right: 70%; }
+}
+
+/* page2 */
+.page2-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+  position: relative;
+}
+
+.page2-box {
+  background: white;
+  padding: 2.5rem 3rem;
+  border-radius: 2rem;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  text-align: center;
+  max-width: 450px;
+  width: 90%;
+}
+
+.page2-box-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.page2-box-subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  color: #555;
+}
+
+.choices-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.choice-btn {
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 1rem;
+  border: 2px solid #ff7eb3;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.choice-btn:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: translateY(-3px);
+}
+
+.choice-btn.selected {
+  border-color: #ff49a1;
+  background: rgba(255, 74, 174, 0.2);
+}
+
+.popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2rem 3rem;
+  border-radius: 2rem;
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  animation: pop 0.4s ease-in-out;
+  z-index: 20;
+  color: white;
+}
+
+.popup.correct {
+  background: #4ade80; /* green */
+}
+
+.popup.wrong {
+  background: #f87171; /* red */
+}
+
+@keyframes pop {
+  0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+  50% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+
+/* page3 */
+.page3-container {
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #ffe6f0, #ffd6e8);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.page3-title {
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #d6336c;
+}
+
+.timeline-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 20px;
+}
+
+.timeline-card {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 15px;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  color: #d6336c;
+}
+
+.move-buttons button {
+  margin: 0 2px;
+  padding: 5px 8px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background: #ffd6e8;
+  color: #d6336c;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.move-buttons button:hover {
+  background: #ffb6d0;
+  transform: scale(1.1);
+}
+
+.check-btn {
+  background: #d6336c;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 20px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  transition: background 0.3s, transform 0.2s;
+}
+
+.check-btn:hover {
+  background: #b02a58;
+  transform: scale(1.05);
+}
+
+.popup-glass {
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -30%);
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 25px 30px;
+  text-align: center;
+  box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+  z-index: 999;
+  color: #d6336c;
+  font-weight: bold;
+}
+
+.popup-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  border: none;
+  background: transparent;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+.event-img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 5px;
+}
+
+/* page4 */
+.page4-container {
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #ffe6f0, #ffd6e8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.page4-title {
+  font-size: 2rem;
+  color: #d6336c;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.tap-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.tap-btn {
+  width: 70px;
+  height: 70px;
+  border-radius: 15px;
+  border: none;
+  font-size: 1.5rem;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: transform 0.2s;
+}
+
+.tap-btn:hover {
+  transform: scale(1.1);
+}
+
+.red { background: #e63946; }
+.green { background: #2a9d8f; }
+.blue { background: #457b9d; }
+.yellow { background: #f4a261; }
+
+.popup-glass {
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -30%);
+  background: rgba(255,255,255,0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 25px 30px;
+  text-align: center;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  z-index: 999;
+  font-weight: bold;
+  color: #d6336c;
+}
+.popup-img {
+  width: 200px;
+  margin-bottom: 2px;
+}
+
+/* page5 */
+.page5-container {
+  min-height: 100vh;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.wish-box {
+  background: #fefefe;
+  border-radius: 20px;
+  padding: 30px;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  transition: transform 1s ease, opacity 1s ease;
+}
+
+.wish-title {
+  text-align: center;
+  color: #d6336c;
+  margin-bottom: 20px;
+}
+
+.wish-subtitle {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+}
+
+.wish-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.wish-textarea-wrapper {
+  background: rgba(255, 255, 255, 0.2); /* glass effect */
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 15px;
+  padding: 10px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.wish-textarea {
+  width: 100%;
+  min-height: 120px;
+  border: none;
+  outline: none;
+  background: transparent; /* ไม่ให้ textarea มี background เกะกะ */
+  font-size: 1rem;
+  resize: none;
+  color: #333;
+}
+
+
+.wish-btn {
+  background: #d6336c;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 15px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.3s;
+}
+
+.wish-btn:hover {
+  transform: scale(1.05);
+}
+
+/* animation fly away */
+.fly-away {
+  transform: translateY(-250px) rotate(-20deg) scale(0.2);
+  opacity: 0;
+  transition: all 0.8s ease-in;
+}
+
+/* Confetti animation */
+.confetti-wrapper {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  width: 0;
+  height: 0;
+  z-index: 999;
+}
+
+.confetti {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: red;
+  animation: fall 1.5s linear forwards;
+}
+
+.confetti-0 { background: #ff595e; left: -30px; animation-delay: 0s; }
+.confetti-1 { background: #ffca3a; left: 10px; animation-delay: 0.1s; }
+.confetti-2 { background: #8ac926; left: -10px; animation-delay: 0.2s; }
+/* ... ทำซ้ำจนถึง confetti-19 หรือใส่ random ผ่าน JS */
+
+/* Animation keyframes */
+@keyframes fall {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(200px) rotate(360deg); opacity: 0; }
+}
+
+
+/* popup */
+.popup-glass {
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -30%);
+  background: #fff;
+  border-radius: 20px;
+  padding: 25px 30px;
+  text-align: center;
+  box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+  z-index: 999;
+}
+
+.popup-text {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #28a745;
+}
+
+
+
+
+
+
+
+
+
