@@ -6,7 +6,7 @@ import Page3 from "./Page3";
 import Page4 from "./Page4";
 import Page5 from "./Page5";
 import Page6 from "./Page6";
-
+import Page7 from "./Coundownpage"
 export default function App() {
   return (
     <Router>
@@ -18,6 +18,8 @@ export default function App() {
         <Route path="/page4" element={<Page4 />} />
         <Route path="/page5" element={<Page5 />} />
         <Route path="/page6" element={<Page6 />} />
+        <Route path="/page7" element={<Page7 />} />
+
       </Routes>
     </Router>
   );

@@ -4,20 +4,20 @@ import { useNavigate } from "react-router-dom";
 import LazIcon from "./assets/Lazicon.png";
 import Soilder from "./assets/เข้ากรม.png"
 import Kaoyai from "./assets/เขาใหญ่ให้แหวน.jpg"
-import Christmas  from "./assets/christmas.png"
-import Series from "./assets/รักไม่รู้ภาษา.jpg"
+import Valentine  from "./assets/Valentine.jpg"
+import Series from "./assets/สงกรานต์.jpg"
 export default function Page3() {
   const navigate = useNavigate();
 
   const initialEvents = [
-    { id: "1", text: "LazIcon", img: LazIcon },
-    { id: "2", text: "เข้ากรม" , img: Soilder},
-    { id: "3", text: "เขาใหญ่ 16/08" ,img: Kaoyai },
-    { id: "4", text: "เอ็มควอเทียร์" , img: Christmas},
-    { id: "5", text: "รักไม่รู้ภาษา Q1" , img: Series },
+    { id: "1", text: "เขาใหญ่ 16/08" ,img: Kaoyai },
+    { id: "2", text: "วาเลนไทน์" , img: Valentine},
+    { id: "3", text: "เข้ากรม" , img: Soilder},
+    { id: "4", text: "สงกรานต์" , img: Series },
+    { id: "5", text: "LazIcon", img: LazIcon },
   ];
 
-  const correctOrder = ["1", "4", "2", "5", "3"];
+  const correctOrder = ["5", "3", "1", "2", "4"];
 
   const [events, setEvents] = useState(initialEvents);
   const [showPopup, setShowPopup] = useState(false);

@@ -345,9 +345,8 @@ html, body {
 
 /* page3 */
 .page3-container {
-  min-height: 100vh;
-  background: linear-gradient(to bottom, #ffe6f0, #ffd6e8);
   padding: 20px;
+  background: linear-gradient(to bottom, #ffe6f0, #ffd6e8);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -362,37 +361,37 @@ html, body {
 
 .timeline-container {
   display: flex;
-  flex-direction: column;
-  gap: 15px;
+  flex-direction: column; /* desktop: เรียงลงเป็น column */
+  align-items: center;
+  gap: 20px;
   width: 100%;
-  max-width: 400px;
-  margin-bottom: 20px;
+  max-width: 600px; /* desktop ขนาดรวม */
+  margin: 0 auto;
 }
 
 .timeline-card {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255,255,255,0.3);
-  border-radius: 15px;
+  border-radius: 20px;
   padding: 15px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+  width: 100%; /* desktop: card เต็มความกว้าง container */
+}
+
+.move-buttons {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  font-weight: bold;
-  color: #d6336c;
+  margin-top: 10px;
 }
 
 .move-buttons button {
-  margin: 0 2px;
-  padding: 5px 8px;
-  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 1rem;
   border: none;
+  border-radius: 8px;
   cursor: pointer;
-  background: #ffd6e8;
-  color: #d6336c;
-  font-weight: bold;
-  transition: 0.2s;
+  color: white;
 }
 
 .move-buttons button:hover {
@@ -401,15 +400,15 @@ html, body {
 }
 
 .check-btn {
-  background: #d6336c;
-  color: white;
-  border: none;
+  margin-top: 25px;
   padding: 12px 25px;
-  border-radius: 20px;
   font-size: 1.1rem;
+  border: none;
+  border-radius: 25px;
   cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-  transition: background 0.3s, transform 0.2s;
+  background: linear-gradient(135deg, #ff6f91, #ff9671);
+  color: white;
+  transition: all 0.3s;
 }
 
 .check-btn:hover {
@@ -419,37 +418,53 @@ html, body {
 
 .popup-glass {
   position: fixed;
-  top: 30%;
+  top: 50%;
   left: 50%;
-  transform: translate(-50%, -30%);
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  transform: translate(-50%, -50%);
+  background: rgba(255,255,255,0.35);
+  backdrop-filter: blur(15px);
+  padding: 20px 30px;
   border-radius: 20px;
-  padding: 25px 30px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
   text-align: center;
-  box-shadow: 0 8px 15px rgba(0,0,0,0.3);
-  z-index: 999;
-  color: #d6336c;
-  font-weight: bold;
+  z-index: 1000;
 }
 
 .popup-close {
   position: absolute;
   top: 10px;
-  right: 15px;
+  right: 10px;
   border: none;
   background: transparent;
   font-size: 1.2rem;
   cursor: pointer;
 }
+
 .event-img {
-  width: 180px;
-  height: 180px;
-  object-fit: cover;
+  width: 100%; /* mobile เต็มความกว้าง card */
+  height: auto;
   border-radius: 10px;
-  margin-bottom: 5px;
+  object-fit: cover;
 }
+
+/* Desktop */
+@media (min-width: 601px) {
+  .event-img {
+    width: 60%; /* desktop: ลดขนาดเหลือ 60% ของ card */
+    margin: 0 auto; /* จัดให้อยู่กลาง card */
+  }
+}
+
+  .move-buttons button {
+    font-size: 0.9rem;
+    padding: 5px 8px;
+  }
+
+  .check-btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+  }
+
 
 /* page4 */
 .page4-container {
@@ -647,6 +662,78 @@ html, body {
   font-weight: bold;
   color: #28a745;
 }
+
+/* page7 */
+/* Glass card สำหรับแต่ละหน่วย countdown */
+.glass-card {
+  background: rgba(255, 255, 255, 0.3); /* โปร่งใส 30% */
+  backdrop-filter: blur(15px);          /* เบลอพื้นหลัง */
+  -webkit-backdrop-filter: blur(15px);  /* สำหรับ Safari */
+  border-radius: 1.5rem;                /* มุมโค้ง */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* ขอบบาง */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2); /* เงานุ่ม */
+  padding: 1.5rem;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: scale(1.05); /* effect เล็กๆ เวลา hover */
+}
+
+/* Background Gradient ของหน้า */
+.body-gradient {
+  background: linear-gradient(to bottom, #fbc2eb, #fceabb); /* จากชมพูไปเหลือง */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Overlay Gradient เพิ่มมิติ */
+.gradient-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    45deg,
+    rgba(255, 192, 203, 0.2),
+    rgba(255, 255, 224, 0.2),
+    rgba(216, 191, 216, 0.2)
+  );
+  pointer-events: none;
+}
+
+/* Text Styles */
+.countdown-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #d63384; /* สีชมพู */
+  margin-bottom: 1.5rem;
+  z-index: 10;
+  text-align: center;
+}
+
+.countdown-number {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #d63384;
+}
+
+.countdown-unit {
+  font-size: 0.9rem;
+}
+
+.countdown-footer {
+  margin-top: 2rem;
+  font-size: 1.25rem;
+  color: #555;
+  z-index: 10;
+  text-align: center;
+}
+
 
 
 
